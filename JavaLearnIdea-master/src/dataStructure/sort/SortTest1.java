@@ -44,7 +44,9 @@ public class SortTest1 {
         //插入排序
         // insSort(arr);
         //快速排序
-        //quickSort(arr, 0, arr.length - 1);
+        quickSort(arr, 0, arr.length - 1);
+        printArr(arr);
+
         //希尔排序
         //shellSort(arr);
 

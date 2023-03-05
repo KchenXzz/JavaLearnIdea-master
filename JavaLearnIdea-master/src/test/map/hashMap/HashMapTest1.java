@@ -30,6 +30,8 @@ public class HashMapTest1 {
         map.forEach((emp,grand)-> System.out.println(emp+"的籍贯是"+grand));
 
 
+        System.out.println(map);
+
 
 
 

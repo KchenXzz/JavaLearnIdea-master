@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.Random;
 
 /**
@@ -12,23 +13,11 @@ import java.util.Random;
 public class NodePad {
     public static void main(String[] args) {
 
-        Random random = new Random();
 
-        System.out.println(random.nextInt(4));
-        System.out.println(random.nextInt(4));
-        System.out.println(random.nextInt(4));
-        System.out.println(random.nextInt(4));
-        System.out.println(random.nextInt(4));
-        System.out.println(random.nextInt(4));
-        System.out.println(random.nextInt(4));
-        System.out.println(random.nextInt(4));
-        System.out.println(random.nextInt(4));
-        System.out.println(random.nextInt(4));
-        System.out.println(random.nextInt(4));
+
+
+
 
 
     }
-
 }
-
-
