@@ -1,6 +1,7 @@
 package blackHorse.javabilibili.suanFaTi.输入字符统计;
 
 import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * //TODO
@@ -20,9 +21,11 @@ public class Test {
     public static void main(String[] args) {
 
 
-        String s="aababcabcdabcde";
+        String s="bbbaababcabcdabcde";
 
-        HashMap<Character, Integer> map = new HashMap<>();
+//        HashMap<Character, Integer> map = new HashMap<>();
+        TreeMap<Character, Integer> map = new TreeMap<>();
+
 
 
         for (int i = 0; i < s.length() ;i++) {
@@ -34,19 +37,7 @@ public class Test {
 
         }
 
-
         map.forEach((ch,count)-> System.out.print(ch+"("+count+") "));
-
-
-
-
-
-
-
-
-
-
-
 
 
 
