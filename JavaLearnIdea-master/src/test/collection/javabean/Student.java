@@ -11,7 +11,7 @@ import java.util.Objects;
  * @date: 2023-2-10 上午 11:22
  * @version: 1.0
  */
-public class Student implements Comparable<Student>{
+public class Student implements Comparable<Student> {
 
     private String name;
 
@@ -25,9 +25,18 @@ public class Student implements Comparable<Student>{
     private int engScore;
 
 
+    private boolean gender;
 
-    public int getSum(){
-        return chScore+mathScore+engScore;
+    public boolean getGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
+
+    public int getSum() {
+        return chScore + mathScore + engScore;
     }
 
     public String getName() {
@@ -66,11 +75,11 @@ public class Student implements Comparable<Student>{
     @Override
     public String toString() {
         return this.getName()
-                +" "+this.getAge()
-                +" "+this.getChScore()
-                +" "+this.getMathScore()
-                +" "+this.getEngScore()
-                +" "+this.getSum()
+                + " " + this.getAge()
+                + " " + this.getChScore()
+                + " " + this.getMathScore()
+                + " " + this.getEngScore()
+                + " " + this.getSum()
                 ;
     }
 
@@ -95,12 +104,13 @@ public class Student implements Comparable<Student>{
         this.engScore = engScore;
     }
 
-    public Student(String name, int age, int chScore, int mathScore, int engScore) {
+    public Student(String name, int age, int chScore, int mathScore, int engScore,boolean gender) {
         this.name = name;
         this.age = age;
         this.chScore = chScore;
         this.mathScore = mathScore;
         this.engScore = engScore;
+        this.gender=gender;
     }
 
     @Override
