@@ -17,13 +17,13 @@ import java.util.TreeSet;
 public class TreeSetTest2 {
     public static void main(String[] args) {
 
-        Student stu1 = new Student("tom", 16, 90, 52, 78);
-        Student stu2 = new Student("jerry", 15, 87, 89, 32);
-        Student stu3 = new Student("aim", 17, 88, 89, 73);
-        Student stu4 = new Student("tim", 16, 99, 78, 43);
-        Student stu5 = new Student("zz", 16, 87, 89, 32);
-        Student stu6 = new Student("hhhh", 15, 87, 89, 32);
-        Student stu7 = new Student("hhhh", 15, 87, 89, 32);
+        Student stu1 = new Student("tom", 16, 90, 52, 78,false);
+        Student stu2 = new Student("jerry", 15, 87, 89, 32,true);
+        Student stu3 = new Student("aim", 17, 88, 89, 73,true);
+        Student stu4 = new Student("tim", 16, 99, 78, 43,true);
+        Student stu5 = new Student("zz", 16, 87, 89, 32,true);
+        Student stu6 = new Student("hhhh", 15, 87, 89, 32,true);
+        Student stu7 = new Student("hhhh", 15, 87, 89, 32,true);
 
         /*
         对以上学生对象按照 总分 语文 数学 英语 年龄 姓名的优先级进行排序（由高到低）

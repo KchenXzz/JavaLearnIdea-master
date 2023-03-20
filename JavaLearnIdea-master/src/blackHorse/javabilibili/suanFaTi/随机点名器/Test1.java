@@ -16,11 +16,14 @@ import java.util.Random;
 public class Test1 {
     public static void main(String[] args) {
 
-        Student stu1 = new Student("张三", 20, 50, 33, 33);
-        Student stu2 = new Student("王五", 45, 53, 33, 33);
-        Student stu3 = new Student("李四", 23, 24, 33, 33);
-        Student stu4 = new Student("炸藕云", 12, 98, 33, 33);
-        Student stu5 = new Student("士大夫", 65, 67, 33, 33);
+        final boolean M=true;
+        final boolean W=false;
+
+        Student stu1 = new Student("张三", 20, 50, 33, 33,W);
+        Student stu2 = new Student("王五", 45, 53, 33, 33,M);
+        Student stu3 = new Student("李四", 23, 24, 33, 33,W);
+        Student stu4 = new Student("炸藕云", 12, 98, 33, 33,W);
+        Student stu5 = new Student("士大夫", 65, 67, 33, 33,W);
 
         HashMap<Integer,Student > map = new HashMap<>();
 
@@ -34,10 +37,39 @@ public class Test1 {
 
     }
 
+    /**
+     * 实现点名第一步，男生70% 女生30%
+     * @param map 存储学生信息的map
+     */
     private static void dianMing(HashMap<Integer, Student> map) {
         Random random = new Random();
-        int num = random.nextInt(5) + 1;
-        System.out.println("点个名，"+map.get(num).getName()+"?");
+        int num = random.nextInt(10) ;
+        if(num<=6){
+            dianMing2(map,true);
+        }else {
+            dianMing2(map,false);
+        }
+
+    }
+
+    /**
+     * 第二部，实现对男女生的随机点名
+     * @param gender 性别
+     */
+    private static void dianMing2(HashMap<Integer, Student> map,boolean gender){
+
+        Random random=new Random();
+
+        int index=random.nextInt(map.size())+1;
+
+        while (true){
+            if (map.get(index).getGender()==gender){
+                System.out.println("点个名，"+map.get(index).getName());
+                break;
+            }
+            index= random.nextInt(map.size())+1;
+        }
+
 
     }
 }
