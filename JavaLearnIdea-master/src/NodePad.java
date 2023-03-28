@@ -9,10 +9,6 @@
 public class NodePad {
     public static void main(String[] args) {
 
-
-        System.out.println(getSum(2,4,56,6));
-
-
     }
     public static int  getSum(int ...a ){
         int sum=0;
