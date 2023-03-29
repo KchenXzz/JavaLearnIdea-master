@@ -41,5 +41,14 @@ public class CollectTest1 {
         System.out.println(map);
 
 
+
+        //lamba表达式写法
+        Map<String, Integer> map1 = list.stream()
+                .filter(n -> "男".equals(n.split("-")[1]))
+                .collect(Collectors.toMap(
+                        k -> k.split("-")[0], v -> Integer.parseInt(v.split("-")[2])
+                ));
+        System.out.println(map1);
+
     }
 }
