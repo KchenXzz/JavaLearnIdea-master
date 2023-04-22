@@ -8,22 +8,13 @@
  */
 public class NodePad {
     public static void main(String[] args) {
+        System.out.println(15 ^ 5);;
+
+        Integer i = 10;
+
+        System.out.println(Integer.toBinaryString(10));
 
     }
-    public static int  getSum(int ...a ){
-        int sum=0;
-        for (int j : a) {
-            sum = sum + j;
-        }
-        return sum;
 
-    }
-    public static int  getSum2(int a1, int ...a ){
-        int sum=0;
-        for (int j : a) {
-            sum = sum + j;
-        }
-        return sum;
-
-    }
 }
+
