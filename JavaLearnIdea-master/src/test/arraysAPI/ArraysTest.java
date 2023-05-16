@@ -13,7 +13,10 @@ import java.util.Arrays;
  * @date: 2023-1-30 下午 2:15
  * @version: 1.0
  */
-public class ArraysTest {
+public class
+
+
+ArraysTest {
 
     public static void main(String[] args) {
 

@@ -1,5 +1,7 @@
 package horstmann.corejava;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Random;
@@ -13,15 +15,18 @@ import java.util.Random;
  * @date: 2022-X-X 下午 5:55
  * @version: 1.0
  */
-public class Employee implements Comparable<Employee>,Cloneable {
+public class Employee implements Comparable<Employee>,Cloneable, Serializable {
     /**
      * 员工类
      */
+
+    @Serial
+    private static final long serialVersionUID = 86881122892189L;
     private static int nextId;
 
     private int id;
     private String name;
-    private LocalDate hireDay;
+    private transient LocalDate hireDay;
     private double salary;
 
 
