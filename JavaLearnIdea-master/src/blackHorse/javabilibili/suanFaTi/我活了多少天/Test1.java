@@ -21,7 +21,7 @@ public class Test1 {
         //showTime();
 
         byJDK8();
-        byJDK7();
+        //byJDK7();
 
     }
 

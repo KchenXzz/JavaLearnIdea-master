@@ -5,8 +5,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,26 +38,117 @@ public class Demo1 {
 
         //通过正则爬取姓氏
         ArrayList<String> name1List = getDate(regex1, name1, 1);
-//        System.out.println(name1List);
-
-
         //通过正则爬取男生名字
         ArrayList<String> boyList = getDate2(regex2, name2, 1);
-//        System.out.println(boyList);
-
         // 通过正则爬取女生名字
         ArrayList<String> girlList = getDate3(regex3, name3, 1);
-//        System.out.println(girlList);
 
-        writeData(name1List);
-        writeData(boyList);
-        writeData(girlList);
+//        writeData(name1List);
+//        writeData(boyList);
+//        writeData(girlList);
+//        System.out.println(boyList.contains("、日"));
+
+
+        ArrayList<String> names = getName2(name1List, boyList, girlList, 400, 400);
+        Collections.shuffle(names);
+//        System.out.println(names);
+//        System.out.println(names.size());
+
+        writeData(names);
+
+
+    }
+
+    /**
+     * 更好的生成假数据的方法 林燕珺-女-18
+     * @param xing 姓氏列表
+     * @param boy 男生名字列表
+     * @param girl 女生名字列表
+     * @param boyCount 数量
+     * @param girlCount 数量
+     * @return 以列表形式返回
+     */
+
+    private static ArrayList<String> getName2(ArrayList<String> xing, ArrayList<String> boy, ArrayList<String> girl, int boyCount, int girlCount){
+
+        //先利用set来去重
+        HashSet<String> boySet = new HashSet<>();
+        HashSet<String> girlSet = new HashSet<>();
+
+        while (true){
+            if (boySet.size()==boyCount)
+                break;
+            Collections.shuffle(xing);
+            Collections.shuffle(boy);
+            boySet.add(xing.get(0)+boy.get(0));
+        }
+
+        while (true) {
+            if (girlSet.size() == girlCount)
+                break;
+            Collections.shuffle(xing);
+            Collections.shuffle(girl);
+            girlSet.add(xing.get(0) + girl.get(0));
+        }
+
+        //添加到list并格式化
+        ArrayList<String> list = new ArrayList<>();
+        Random random = new Random();
+        for (String s : boySet) {
+            int age = random.nextInt(10) + 18;//18~27
+            list.add(s+ "-男-" + age);
+        }
+        for (String s : girlSet) {
+            int age = random.nextInt(8) + 18;//18~25
+            list.add(s+ "-女-" + age);
+        }
+        return list;
+    }
+
+
+
+    private static ArrayList<String> getName(ArrayList<String> xing, ArrayList<String> boy, ArrayList<String> girl, int boyCount, int girlCount) {
+
+        ArrayList<String> list = new ArrayList<>();
+        Random random = new Random();
+
+
+        Collections.shuffle(xing);
+        Collections.shuffle(boy);
+
+        for (int i = 0; i < boyCount; i++) {
+            int age = random.nextInt(10) + 18;//18~27
+            int i1 = Math.min(xing.size(), boy.size());
+            while (i>= i1){
+                i=i- i1;
+                boyCount=boyCount-i1;
+                Collections.shuffle(xing);
+                Collections.shuffle(boy);
+            }
+            list.add(xing.get(i) + boy.get(i) + "-男-" + age);
+        }
+
+        Collections.shuffle(xing);
+        Collections.shuffle(girl);
+        for (int i = 0; i < girlCount; i++) {
+            int age = random.nextInt(8) + 18;//18~25
+            int i1=Math.min(xing.size(),girl.size());
+            while (i>=i1){
+                i=i- i1;
+                girlCount=girlCount-i1;
+                Collections.shuffle(xing);
+                Collections.shuffle(girl);
+            }
+            list.add(xing.get(i) + girl.get(i) + "-女-" + age);
+        }
+        return list;
 
 
     }
 
     /**
      * 将集合写到文件
+     *
      * @param list 集合
      * @throws IOException
      */
@@ -67,19 +157,15 @@ public class Demo1 {
         //都写到这个文件
         File file = new File("JavaLearnIdea-master\\src\\test\\IO\\paQuXingMing\\name.txt");
 
-        //可覆写
-        FileWriter fileWriter = new FileWriter(file, true);
-
+        FileWriter fileWriter = new FileWriter(file);
         //日期对象
         LocalDateTime dateTime = LocalDateTime.now();
         //指定日期格式
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy年MM月dd日 ahh点mm分");
-        fileWriter.write(dateTimeFormatter.format(dateTime) +"\n");
+        fileWriter.write(dateTimeFormatter.format(dateTime) + "\n");
         for (String s : list) {
-            fileWriter.write(s);
+            fileWriter.write(s+"\n");
         }
-
-        fileWriter.write("\n");
         fileWriter.close();
 
     }
@@ -115,6 +201,7 @@ public class Demo1 {
 
     /**
      * 提取男生名字
+     *
      * @param regex 正则
      * @param data  网页的字符串
      * @param index 正则下表
@@ -129,14 +216,22 @@ public class Demo1 {
 
         while (matcher.find()) {
 
-            list.add(matcher.group(index));
-            list.add(matcher.group(index + 2));
+            String str = matcher.group(index);
+            if (!str.equals("、日")){
+                list.add(str);
+            }
+            str = matcher.group(index+2);
+            if (!str.equals("、日")){
+                list.add(str);
+            }
         }
 
         return list;
     }
+
     /**
      * 提取女生名字
+     *
      * @param regex 正则
      * @param data  网页的字符串
      * @param index 正则下表
